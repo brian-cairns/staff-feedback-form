@@ -6,115 +6,124 @@ let newForm = {}
 let submitted = 0
 let additional = 0
 
-let comment1 = document.querySelector('input#comment1')
+let comment1 = document.getElementById('comment1')
 comment1.addEventListener('change', (e) => {
 	console.log('changed')
 	newForm.comment1 = e.target.value;
   console.log(newForm.comment1);
 })
   
-let comment2 = document.querySelector('input#comment2')
+let comment2 = document.getElementById('comment2')
 comment2.addEventListener('change', (e) => {
 	console.log('changed')
 	newForm.comment2 = e.target.value;
   console.log(newForm.comment2);
 })
   
-let comment3 = document.querySelector('input#comment3')
+let comment3 = document.getElementById('comment3')
 comment3.addEventListener('change', (e) => {
 	console.log('changed')
 	newForm.comment3 = e.target.value;
   console.log(newForm.comment3);
 })
   
-let comment4 = document.querySelector('input#comment4')
+let comment4 = document.getElementById('comment4')
 comment4.addEventListener('change', (e) => {
 	console.log('changed')
 	newForm.comment4 = e.target.value;
   console.log(newForm.comment4);
   })
   
-const question1 = new Promise ((res) => {
-    var response
-    let answers = ['very useful', 'useful', 'somewhat useful', 'neutral', 'not useful']
-    for (let i = 0; i < 5; i++) {
-        if (document.getElementById(`q1-checkbox-${i}`).isChecked()) {
-            i = 5;
-            response = answers[i]
-        }
-    }
-    res(response)
-})
+async function question1() { 
+    let answer = new Promise((res) => {
+        var response
+        if (document.getElementById('q1-checkbox-2').checked) {response = 'very useful'}
+        if (document.getElementById('q1-checkbox-2').checked) { response = 'useful' }
+        if (document.getElementById('q1-checkbox-3').checked) { response = 'somewhat useful' }
+        if (document.getElementById('q1-checkbox-4').checked) { response = 'neutral' }
+        if (document.getElementById('q1-checkbox-5').checked) { response = 'not useful' }
+        res(response)
+    })
+    return answer
+}
+ 
+async function question2() { 
+    let answer = new Promise((res) => {
+        var response
+        if(document.getElementById('q2-checkbox-1').checked) {response = 'very appropriate'}
+        if (document.getElementById('q2-checkbox-2').checked) { response = 'appropriate' }
+        if (document.getElementById('q2-checkbox-3').checked) { response = 'somewhat appropriate' }
+        if (document.getElementById('q2-checkbox-4').checked) { response = 'neutral' }
+        if (document.getElementById('q2-checkbox-5').checked) { response = 'not appropriate' }
+        res(response)
+    })
+    return answer
+}
 
-const question2 = new Promise ((res) => {
-    var response
-    let answers = ['very appropriate', 'appropriate', 'somewhat appropriate', 'useful on some level', 'neutral', 'not appropriate']
-    for (let i = 0; i < 6; i++) {
-        if (document.getElementById(`q2-checkbox-${i}`).isChecked()) {
-            i = 5;
-            response = answers[i]
-        }
-    }
-    res(response)
-})
+async function question3() { 
+    let answer = new Promise((res) => {
+        var response
+        if(document.getElementById('q3-checkbox-1').checked) {response = 'many useful strategies were provided'}
+        if (document.getElementById('q3-checkbox-2').checked) { response = 'some useful strategies were provided' }
+        if (document.getElementById('q3-checkbox-3').checked) { response = 'useful enough' }
+        if (document.getElementById('q3-checkbox-4').checked) { response = 'neutral' }
+        if (document.getElementById('q3-checkbox-5').checked) { response = 'no useful strategies' }
+        res(response)
+    })
+    return answer
+}
+async function question4() { 
+    let answer = new Promise((res) => {
+        var response
+        if(document.getElementById('q4-checkbox-1').checked) {response = 'loved it'}
+        if (document.getElementById('q4-checkbox-2').checked) { response = 'needed a few more activities' }
+        if (document.getElementById('q4-checkbox-3').checked) { response = 'neutral' }
+        if (document.getElementById('q4-checkbox-4').checked) { response = 'sometimes it was dry' }
+        if (document.getElementById('q4-checkbox-5').checked) { response = 'I was bored' }
+        res(response)
+    })
+    return answer
+}
+async function question5() { 
+    let answer = new Promise((res) => {
+        var response
+        if(document.getElementById('q5-checkbox-1').checked) {response = 'nailed it'}
+        if (document.getElementById('q5-checkbox-2').checked) { response = 'it was enough time' }
+        if (document.getElementById('q5-checkbox-3').checked) { response = 'neutral' }
+        if (document.getElementById('q5-checkbox-4').checked) { response = 'a bit more time was needed' }
+        if (document.getElementById('q5-checkbox-5').checked) { response = 'Nah' }
+        res(response)
+    })
+    return answer
+}
 
-const question3 = new Promise ((res) => {
-    var response
-    let answers = ['many useful strategies were provided', 'some useful strategies were provided', 'useful enough', 'neutral', 'no useful strategies']
-    for (let i = 0; i < 5; i++) {
-        if (document.getElementById(`q3-checkbox-${i}`).isChecked()) {
-            i = 5;
-            response = answers[i]
-        }
-    }
-    res(response)
-})
-
-const question4 = new Promise ((res) => {
-    var response
-    let answers = ['loved it', 'needed a few more activities', 'neutral', 'sometimes it was dry', 'I was bored']
-    for (let i = 0; i < 5; i++) {
-        if (document.getElementById(`q4-checkbox-${i}`).isChecked()) {
-            i = 5;
-            response = answers[i]
-        }
-    }
-    res(response)
-})
-
-const question5 = new Promise ((res) => {
-    var response
-    let answers = ['nailed it', 'it was enough time', 'a bit more time was needed', 'neutral', 'Nah']
-    for (let i = 0; i < 5; i++) {
-        if (document.getElementById(`q5-checkbox-${i}`).isChecked()) {
-            i = 5;
-            response = answers[i]
-        }
-    }
-    resolve(response)
-})
-
-const question6 = new Promise ((res) => {
-    var response
-    let answers = ['#letsgetit', 'I will be ok', 'I have questions', 'I need some help', 'I am not ready']
-    for (let i = 0; i < 5; i++) {
-        if (document.getElementById(`q6-checkbox-${i}`).isChecked()) {
-            i = 5;
-            response = answers[i]
-        }
-    }
-    resolve(response)
-})
+async function question6() { 
+    let answer = new Promise((res) => {
+        var response
+        if (document.getElementById('q6-checkbox-1').checked) {response = '#letsgetit'}
+        if (document.getElementById('q6-checkbox-2').checked) { response = 'I will be ok' }
+        if (document.getElementById('q6-checkbox-3').checked) { response = 'I have questions' }
+        if (document.getElementById('q6-checkbox-4').checked) { response = 'I need some help' }
+        if (document.getElementById('q6-checkbox-5').checked) { response = 'I am not ready' }
+        res(response)
+    })
+    return answer
+}
 
 async function getAnswers() {
-    answers = Promise.all(question1, question2, question3, question4, question5, question6)
-        .then((res) => { return results })
-        .catch(console.error)
+    let answer1 = await question1();
+    let answer2 = await question2();
+    let answer3 = await question3();
+    let answer4 = await question4();
+    let answer5 = await question5();
+    let answer6 = await question6();
+    let answers = [answer1, answer2, answer3, answer4, answer5, answer6]
     return answers
 }
 
 document.getElementById('submit').addEventListener("click", async (event) => {
     newForm.answers = await getAnswers() 
+    console.log(newForm)
     submitForm(newForm, formName)
 })
 
