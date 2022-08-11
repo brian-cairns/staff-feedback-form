@@ -141,20 +141,31 @@ async function submitForm(data, form) {
     },
     body: JSON.stringify(document)
   })
-    .then((response) => {
-      if (response.status == 200) {
-      showSuccess()
-      } else {
-        showError(response.body)
-      }
-    })
+    .then(response => response.json())
+    .then(data => respond(data)) 
     .catch((err) => showError(err))
 }
 
-
-function showSuccess() {
-    document.getElementById('returnMessage').innerHTML = 'Form has been successfully submitted'
+function respond(data) {
+  let id = data.key
+  if (id) {
+    showSuccess(id) 
+  } else {
+    showError(data.error)
+  }
 }
+
+function showSuccess(id) {
+  document.getElementById('returnMessage').innerHTML = 'Form has been successfully submitted'
+  const message = `A staff feedback form has just been submitted`  
+  const toSend = {
+    name: 'admin',
+    notice: message,
+    type: 'basic'
+  }
+  notify(toSend);
+}
+
 
 function showError(err) {
     console.error
